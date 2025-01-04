@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "DocuLens",
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body
         className={cn('min-h-screen font-sans antialiased grainy', inter.className)}
       >
+        <Navbar/>
         {children}
       </body>
     </html>
