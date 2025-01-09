@@ -4,9 +4,12 @@ import { useState } from 'react'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
   DialogTrigger,
 } from './ui/dialog'
 import { Button } from './ui/button'
+import { DialogTitle } from '@radix-ui/react-dialog'
 
 
 const UploadButton = () => {
@@ -27,7 +30,14 @@ const UploadButton = () => {
       </DialogTrigger>
 
       <DialogContent>
-        Example Content
+        <DialogHeader>
+          <DialogTitle>
+            Example title
+          </DialogTitle>
+          <DialogDescription>
+            Example Description
+          </DialogDescription>
+        </DialogHeader>
       </DialogContent>
     </Dialog>
   )
