@@ -7,16 +7,34 @@ import {
   MessageSquare,
   Plus,
   Trash,
+  Loader2
 } from 'lucide-react'
 import Skeleton from 'react-loading-skeleton'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { Button } from './ui/button'
+import { useState } from 'react'
 
 
 const Dashboard = () => {
 
+  const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null)
+  
+  const utils = trpc.useUtils();
+
   const { data: files, isLoading } = trpc.getUserFiles.useQuery()
+  const { mutate: deleteFile } = trpc.deleteFile.useMutation({
+    onSuccess : () => {
+      utils.getUserFiles.invalidate()
+
+    },
+    onMutate({id}) {
+      setCurrentlyDeletingFile(id)
+    },
+    onSettled() {
+      setCurrentlyDeletingFile(null)
+    }
+  })
 
   return (
     <main className='mx-auto max-w-7xl md:p-10'>
@@ -71,8 +89,18 @@ const Dashboard = () => {
                   </div>
 
                   {/* Delete Button */}
-                  <Button size='sm' className='w-full' variant='destructive'>
-                    <Trash className='h-4 w-4' />
+                  <Button
+                    onClick={() =>
+                      deleteFile({ id: file.id })
+                    }
+                    size='sm'
+                    className='w-full'
+                    variant='destructive'>
+                    {currentlyDeletingFile === file.id ? (
+                      <Loader2 className='h-4 w-4 animate-spin' />
+                    ) : (
+                      <Trash className='h-4 w-4' />
+                    )}
                   </Button>
 
                 </div>
