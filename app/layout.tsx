@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Providers from "@/components/Provider";
 
 import "react-loading-skeleton/dist/skeleton.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "DocuLens",
@@ -25,6 +26,7 @@ export default function RootLayout({
         className={cn('min-h-screen font-sans antialiased grainy', inter.className)}
       >
         <Providers>
+        <Toaster/>
         <Navbar/>
         {children}
         </Providers>
