@@ -22,9 +22,8 @@ const UploadDropzone = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [uploadProgress, setUploadProgress] = useState<number>(0)
 
-  const {startUpload} = useUploadThing('pdfUploader')
-
-  const {toast} = useToast()
+  const { startUpload } = useUploadThing('pdfUploader')
+  const { toast } = useToast()
 
   const { mutate: startPolling } = trpc.getFile.useMutation(
     {
