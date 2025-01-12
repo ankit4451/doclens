@@ -28,6 +28,8 @@ import {
 
 import SimpleBar from 'simplebar-react'
 
+import PdfFullscreen from './PdfFullScreen'
+
 /* Import PDF worker */
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -44,6 +46,10 @@ const PdfRenderer = ({url} : PdfRendererProps) => {
 
     const [scale, setScale] = useState<number>(1)
     const [rotation, setRotation] = useState<number>(0)
+    const [renderedScale, setRenderedScale] = useState<number | null>(null)
+
+    const isLoading = renderedScale !== scale
+
 
     const CustomPageValidator = z.object({
       page: z
@@ -166,6 +172,8 @@ const PdfRenderer = ({url} : PdfRendererProps) => {
                     aria-label='rotate 90 degrees'>
                     <RotateCw className='h-4 w-4' />
                   </Button>
+
+                  <PdfFullscreen fileUrl={url} />
                 </div>
             </div>
         
@@ -193,12 +201,31 @@ const PdfRenderer = ({url} : PdfRendererProps) => {
               file={url}
               className='max-h-full'>
 
-              <Page
+              {isLoading && renderedScale ? (<Page
                 width={width ? width : 1}
                 pageNumber={currPage}
                 scale={scale}
                 rotate={rotation}
+                key={'@' + renderedScale}
+              />) : null }
+
+              <Page
+                className={cn(isLoading ? 'hidden' : '')}
+                width={width ? width : 1}
+                pageNumber={currPage}
+                scale={scale}
+                rotate={rotation}
+                key={'@' + scale}
+                loading={
+                  <div className='flex justify-center'>
+                    <Loader2 className='my-24 h-6 w-6 animate-spin' />
+                  </div>
+                }
+                onRenderSuccess={() =>
+                  setRenderedScale(scale)
+                }
               />
+
             </Document>
           </div>
           </SimpleBar>
