@@ -41,15 +41,17 @@ const onUploadComplete = async ({
       key: file.key,
       name: file.name,
       userId: metadata.userId,
-      url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+      url: `https://utfs.io/f/${file.key}`,
       uploadStatus: "PROCESSING",
     },
   });
 
+  console.log("Created file id is ", createdFile.id);
+
   try {
-    const response = await fetch(
-      `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`
-    );
+    const response = await fetch(`https://utfs.io/f/${file.key}`);
+
+    console.log("Uploadthing fetch response", response);
 
     const blob = await response.blob();
 
@@ -58,17 +60,34 @@ const onUploadComplete = async ({
     const pageLevelDocs = await loader.load();
 
     //const pagesAmt = pageLevelDocs.length;
+
     // vectorize and index entire document
+
     const pineconeIndex = pineconeClient.Index("doculens");
+    console.log("Pinecone doculens index", pineconeIndex);
 
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
     });
 
-    await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
-      pineconeIndex,
-      namespace: createdFile.id,
+    // Add a 'dataset' field to the data to distinguish the source
+    const combinedData = pageLevelDocs.map((document) => {
+      return {
+        ...document,
+        metadata: {
+          fileId: createdFile.id,
+        },
+        dataset: "pdf", // Use a field to indicate the source dataset
+      };
     });
+
+    const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
+      pineconeIndex,
+    });
+
+    const res = await vectorStore.addDocuments(combinedData);
+
+    console.log("Response from pinecone store is", res);
 
     await db.file.update({
       data: {
@@ -78,7 +97,8 @@ const onUploadComplete = async ({
         id: createdFile.id,
       },
     });
-  } catch {
+  } catch (err) {
+    console.log("Error is ", err);
     await db.file.update({
       data: {
         uploadStatus: "FAILED",
