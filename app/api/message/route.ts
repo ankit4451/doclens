@@ -7,7 +7,7 @@ import { openai } from "@/lib/openai";
 import { db } from "@/db";
 import { SendMessageValidator } from "@/lib/validators/SendMessageValidator";
 
-import { streamText } from "ai";
+import { OpenAIStream, StreamingTextResponse } from "ai";
 
 export const POST = async (req: NextRequest) => {
   // endpoint for asking a question to a pdf file
@@ -69,9 +69,10 @@ export const POST = async (req: NextRequest) => {
     content: msg.text,
   }));
 
-  const response = streamText({
-    model: openai("gpt-3.5-turbo"),
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
     temperature: 0,
+    stream: true,
     messages: [
       {
         role: "system",
@@ -100,6 +101,20 @@ export const POST = async (req: NextRequest) => {
     ],
   });
 
-  console.log(response.toDataStreamResponse());
-  return response.toDataStreamResponse();
+  const stream = OpenAIStream(response, {
+    async onCompletion(completion) {
+      await db.message.create({
+        data: {
+          text: completion,
+          isUserMessage: false,
+          fileId,
+          userId,
+        },
+      });
+    },
+  });
+
+  console.log("Response is", stream);
+
+  return new StreamingTextResponse(stream);
 };
