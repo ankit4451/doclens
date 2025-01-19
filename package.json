@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^1.0.19",
+    "@ai-sdk/openai": "^0.0.40",
     "@hookform/resolvers": "^3.10.0",
     "@kinde-oss/kinde-auth-nextjs": "^2.4.6",
     "@langchain/community": "^0.3.24",
