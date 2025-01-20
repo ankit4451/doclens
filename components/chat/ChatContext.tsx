@@ -70,9 +70,9 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
             };
           }
 
-          let newPages = [...old.pages];
+          const newPages = [...old.pages];
 
-          let latestPage = newPages[0]!;
+          const latestPage = newPages[0]!;
 
           latestPage.messages = [
             {
