@@ -6,11 +6,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 1. Clone the repository
-
-```bash
-git clone -b main https://github.com/ankit4451/doculens.git
-```
-
+   ```bash
+   git clone -b main https://github.com/ankit4451/doculens.git
+   ```
 2. Copy the .env.example variables into a separate .env file, fill them out
 3. Run the development server
    ```bash
