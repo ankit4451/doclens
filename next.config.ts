@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
     config.resolve.alias.encoding = false;
     return config;
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
+module.exports = nextConfig;
 
 export default nextConfig;
