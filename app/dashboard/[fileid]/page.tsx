@@ -2,15 +2,10 @@ import ChatWrapper from "@/components/chat/ChatWrapper";
 import PdfRenderer from "@/components/PdfRenderer";
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Params } from "next/dist/server/request/params";
 import { notFound, redirect } from "next/navigation";
 
-interface PageProps {
-  params: {
-    fileid: string;
-  };
-}
-
-const Page = async ({ params }: PageProps) => {
+const Page = async ({ params }: { params: Params }) => {
   const { fileid } = params;
 
   const { getUser } = getKindeServerSession();
