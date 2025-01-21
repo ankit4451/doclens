@@ -1,4 +1,4 @@
-## doculens - A full stack SAAS application
+# doculens - A full stack SAAS application
 Modern full stack application that empowers users to interact with PDFs intelligently, powered by OpenAI
 
 ## Getting Started
