@@ -1,7 +1,6 @@
-## doculens
-A Modern full stack application that empowers users to interact with PDFs intelligently, powered by OpenAI
+## doculens - A full stack SAAS application
 =======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Modern full stack application that empowers users to interact with PDFs intelligently, powered by OpenAI
 
 ## Getting Started
 
