@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -10,11 +9,7 @@ import "simplebar-react/dist/simplebar.min.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Suspense } from "react";
 
-export const metadata: Metadata = {
-  title: "DocuLens",
-  description:
-    "A SAAS application for interacting with PDFs intelligently powered by OpenAI",
-};
+export const metadata = constructMetadata();
 
 const inter = Inter({ subsets: ["latin"] });
 
