@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
     config.resolve.alias.encoding = false;
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.googleusercontent.com",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
 };
 module.exports = nextConfig;
 
