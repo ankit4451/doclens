@@ -6,7 +6,6 @@ import { PineconeStore } from "@langchain/pinecone";
 import { AIModel } from "@/lib/openai";
 import { db } from "@/db";
 import { SendMessageValidator } from "@/lib/validators/SendMessageValidator";
-
 import { streamText } from "ai";
 
 export const POST = async (req: NextRequest) => {
@@ -54,6 +53,7 @@ export const POST = async (req: NextRequest) => {
 
   const results = await vectorStore.similaritySearch(message, 4);
 
+  //console.log("Results are ", results);
   const prevMessages = await db.message.findMany({
     where: {
       fileId,

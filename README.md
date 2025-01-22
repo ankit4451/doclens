@@ -1,4 +1,5 @@
-# doculens - A full stack SAAS application
+# DocuLens - A full stack SAAS application
+
 Modern full stack application that empowers users to interact with PDFs intelligently, powered by OpenAI
 
 ## Getting Started
@@ -18,6 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Features
+
 - 🎨 Seamless Modern UI Using 'shadcn-ui'
 - 🔒 Authentication Using Kinde
 - 📤 Intuitive Drag n’ Drop Uploads
@@ -38,7 +40,6 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
 
 ## Deploy on Vercel
 
