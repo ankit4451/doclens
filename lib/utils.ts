@@ -14,8 +14,8 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = "Quill - the SaaS for intelligent and smart peoples",
-  description = "Quill is an open-source platform to make chatting to your PDF files easy.",
+  title = "DocLens - PDFs made conversational",
+  description = "DocLens is an open-source platform to make chatting to your PDF files easy.",
   image = "/thumbnail.png",
   icons = "/favicon.ico",
   noIndex = false,

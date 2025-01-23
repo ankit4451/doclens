@@ -1,4 +1,4 @@
-# DocuLens - A full stack SAAS application
+# DocLens - A full stack SAAS application
 
 Modern full stack application that empowers users to interact with PDFs intelligently, powered by OpenAI
 

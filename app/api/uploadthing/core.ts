@@ -64,7 +64,7 @@ const onUploadComplete = async ({
     // vectorize and index entire document
 
     const pineconeIndex = pineconeClient.Index("doculens");
-    console.log("Pinecone doculens index", pineconeIndex);
+    //console.log("Pinecone doculens index", pineconeIndex);
 
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
