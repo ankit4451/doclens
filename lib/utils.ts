@@ -17,7 +17,7 @@ export function constructMetadata({
   title = "DocLens - PDFs made conversational",
   description = "DocLens is an open-source platform to make chatting to your PDF files easy.",
   siteName = "https://doculens.vercel.app",
-  image = "/thumbnail.png",
+  image = "/thumbnail.jpeg",
   icons = "/favicon.ico",
   noIndex = false,
   url = "https://doculens.vercel.app",
