@@ -34,7 +34,8 @@ export function constructMetadata({
       description,
       images: [
         {
-          url: `https://doclens.vercel.app${image}`,
+          url: image,
+          secureUrl: image,
           alt: "Preview image for DocuLens",
         },
       ],
