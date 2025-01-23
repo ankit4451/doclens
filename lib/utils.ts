@@ -16,11 +16,11 @@ export function absoluteUrl(path: string) {
 export function constructMetadata({
   title = "DocLens - PDFs made conversational",
   description = "DocLens is an open-source platform to make chatting to your PDF files easy.",
-  siteName = "https://doculens.vercel.app",
+  siteName = "https://doculens.vercel.app/",
   image = "/thumbnail.jpeg",
   icons = "/favicon.ico",
   noIndex = false,
-  url = "https://doculens.vercel.app",
+  url = "https://doculens.vercel.app/",
 }: {
   title?: string;
   description?: string;
@@ -47,7 +47,7 @@ export function constructMetadata({
       ],
     },
     icons,
-    metadataBase: new URL("https://doclens.vercel.app"),
+    metadataBase: new URL("https://doclens.vercel.app/"),
     ...(noIndex && {
       robots: {
         index: false,
